@@ -23,7 +23,7 @@ def main():
              'https://api.platerecognizer.com/v1/plate-reader/',
              #data=dict(regions=['us-ca'], config=json.dumps(dict(region="strict"))),  # Optional
              files=dict(upload=stream.read()),
-             headers={'Authorization': 'Token 4632e5c9355e589155eb276c630d7d798fbc93bd'})
+             headers={'Authorization': 'Token '})
      response = response.json()
      #pprint(response)
      amount = response['results']
