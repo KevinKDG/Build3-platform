@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 import json
 import requests
 from pprint import pprint
@@ -8,12 +7,11 @@ from time import sleep
 from picamera import PiCamera
 from PIL import Image
 
-#camera = PiCamera()
-stream = BytesIO()
 
 def main():
  while True:
      camera = PiCamera()
+     stream = BytesIO()
      camera.start_preview()
      sleep(2)
      camera.capture(stream, format='jpeg')
@@ -23,7 +21,7 @@ def main():
              'https://api.platerecognizer.com/v1/plate-reader/',
              #data=dict(regions=['us-ca'], config=json.dumps(dict(region="strict"))),  # Optional
              files=dict(upload=stream.read()),
-             headers={'Authorization': 'Token '})
+             headers={'Authorization': 'Token 4632e5c9355e589155eb276c630d7d798fbc93bd'})
      response = response.json()
      #pprint(response)
      amount = response['results']
@@ -45,5 +43,4 @@ def main():
 
 if __name__ == '__main__':  # run tests if called from command-line
     main()
-
 
