@@ -22,6 +22,7 @@ def main():
              #data=dict(regions=['us-ca'], config=json.dumps(dict(region="strict"))),  # Optional
              files=dict(upload=stream.read()),
              headers={'Authorization': 'Token token hier in plaatsen'})
+             #voorbeeld token letterlijk met "Token" voor: 'Token 41c72...'
      response = response.json()
      #pprint(response)
      amount = response['results']
