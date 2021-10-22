@@ -40,25 +40,20 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
 die("Connection failed: " . $conn->connect_error);
 }
-// echo "Connected successfully";
-?>
-//require_once('db.php');
-$sql="SELECT `nummerplaat`, `data` FROM `Platform-build`"
-
+echo "Connected successfully"; ?> <?php $sql = "SELECT * FROM platform";
 $result = $conn->query($sql);
 
-if ($result->fetch_assoc()){
-  while ($row = $result->fetch_assoc()) {
-    echo </br>
-    echo $row["nummerplaat"]
-    echo '<p> '. $row["data"] .'</p>'
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "id: " . $row["id"]. " - nummerplaat: " . $row["nummerplaat"]. "<br>";
   }
+} else {
+  echo "0 results";
 }
-echo $sql;
-
-
-
+$conn->close();
 ?>
+
 
 
 <!DOCTYPE html>
