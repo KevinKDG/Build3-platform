@@ -2,35 +2,33 @@ from network import LTE
 import time
 import socket
 import uos
+import urequests
+import nb
+import wifi
+import json
+from mqtt import MQTTClient
+
+# ========== Wifi or NB
+wifi.wificonnect('ssid', 'wachtwoord') # ssid , password
 
 
-randomval = os.urandom(1)[0]
+#  ========== values
+randomval = os.urandom(1)[0] # 0 - 255
+plate = "1abc123"
 
+# ========== MQTT
 
-print("starting NB-IOT connection")
+while True:
+    print("connect client")
+    client = MQTTClient("fipy", "192.168.1.2", port=1883)
+    client.connect()
+    pack = {"plate": plate, "value": randomval} #Json format
+    jsonObj = json.dumps(jsonvalues)
+    data = jsonObj
 
-# NB-IOT CONNECTION
-lte = LTE()
-
-lte.attach()
-
-print("attaching..",end='')
-
-while not lte.isattached():
-    time.sleep(0.25)    # sleep 0.25 sec
-
-    print('.',end='')
-print("attached!")
-
-lte.connect()
-print("connecting [##",end='')
-while not lte.isconnected():
-    time.sleep(0.25)
-    print('#',end='')
-print("] connected!")
-
-print(randomval)
-# -> stuur de random value door naar het platform -> -> ->
-time.sleep(10)
+    client.publish(topic="fipy/data",msg=data)
+    print("Value has been sent!")
+    print(data)
+    time.sleep(10)
 
 lte.deinit()
