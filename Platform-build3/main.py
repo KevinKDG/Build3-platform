@@ -9,7 +9,7 @@ import json
 from mqtt import MQTTClient
 
 # ========== Wifi or NB
-wifi.wificonnect('ssid', 'pwd') # ssid , password
+wifi.wificonnect('WiFi-5.0-133B', '24652CC8A4') # ssid , password
 # nb.nbconnect()
 
 #  ========== values
@@ -30,3 +30,6 @@ while True:
     print("Value has been sent!")
     print(data)
     time.sleep(10)
+
+
+# mosquitto_pub -h 192.168.1.2 -m "{"plate": "1abc123", "value": 100}" -t fipy/data
