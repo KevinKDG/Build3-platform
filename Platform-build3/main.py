@@ -9,7 +9,7 @@ import json
 from mqtt import MQTTClient
 
 # ========== Wifi or NB
-wifi.wificonnect('WiFi-5.0-133B', '24652CC8A4') # ssid , password
+wifi.wificonnect('ssid', 'pwd') # ssid , password
 # nb.nbconnect()
 
 #  ========== values
